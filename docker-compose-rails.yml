@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+  kafka-consumer-rails:
+    build:
+      context: ./kafka-consumer-rails
+      dockerfile: Dockerfile
+    volumes:
+      - ./kafka-consumer-rails:/var/src/kafka-consumer-rails
+    hostname: kafka-consumer-rails
+    container_name: kafka-consumer-rails
+    environment:
+      - BOOTSTRAP_SERVER_ADDRESS=kafka1
+    ports:
+      - 3000:3000
+    networks:
+      - kafka-cluster-network
+
+networks:
+  kafka-cluster-network:
