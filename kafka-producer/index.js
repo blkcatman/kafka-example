@@ -13,9 +13,9 @@ async function main() {
 
   let count = 0
   while(true) {
-    console.log('send message from producer.')
+    console.log(`send message from producer: ${count}`)
     await producer.send({
-      topic: 'test-topic',
+      topic: 'example',
       messages: [
         { value: `Hello KafkaJS user!:${count}` },
       ],
@@ -25,7 +25,7 @@ async function main() {
     if (count > 99) {
       break;
     }
-    await setTimeout(5000)
+    await setTimeout(3000)
   }
 
   await producer.disconnect()
